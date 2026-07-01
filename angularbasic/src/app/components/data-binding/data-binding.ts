@@ -15,16 +15,14 @@ export class DataBinding {
    minChar: number= 3;
   inputType: string = "radio";
   myClassName: string ="myColor";
-  constructor() {
-  }
+
   showWelcomeMessage() {
   alert("welcome to angular 20")
     }
     changeCourseName(){
       this.courseName="ReactJs Tutorial"
     }
-  onCityChnage(){
+  onCityChange(){
     alert("city")
   }
-  
 }

@@ -9,11 +9,12 @@ import { NgClass } from "./components/ng-class/ng-class";
 import { Highlight } from './components/highlight';
 import { AppnumbersOnly } from './components/appnumbers-only';
 import { CurrencyConverterPipe } from './components/currency-converter-pipe';
+import { GetApi } from './components/get-api/get-api';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterLink,DataBinding,RouterOutlet,CurrencyConverterPipe], 
+  imports: [RouterLink,DataBinding,RouterOutlet,CurrencyConverterPipe,GetApi,User], 
   // Highlight,AppnumbersOnly,NgClass,NgFor,NgIf
   templateUrl: './app.html',
   styleUrl: './app.css'

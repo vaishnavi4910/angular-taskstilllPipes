@@ -1,3 +1,97 @@
-<p>user works!</p>
+<div class="row">
+    <div class="col-7">
+        <div class="card">
+        <div class="card-header bg-success">
+            UserList
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>emailId</th>
+                        <th>fullName</th>
+                        <th>mobileNo</th>
+                        <th>password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of userList; track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.emailId}}</td>
+                            <td>{{item.fullName}}</td>
+                            <td>{{item.mobileNo}}</td>
+                            <td>{{item.password}}</td>
+                        </tr>
+                    }
 
-<input type="text" placeholder="name"/>
+                </tbody>
+            </table>
+           
+        </div>
+    </div>
+    </div>
+
+
+
+  <div class="col-5">
+  <div class="card">
+    <div class="card-header bg-success text-white">
+      New User
+    </div>
+
+    <div class="card-body">
+
+      <!-- First Row -->
+      <div class="row">
+        <div class="col-6">
+          <label>Email Id</label>
+          <input type="text" [(ngModel)]="userObj.emailId" class="form-control">
+        </div>
+
+        <div class="col-6">
+          <label>Full Name</label>
+          <input type="text" [(ngModel)]="userObj.fullName" class="form-control">
+        </div>
+      </div>
+
+      <!-- Second Row -->
+      <div class="row mt-3">
+        <div class="col-6">
+          <label>Mobile No</label>
+          <input type="text" [(ngModel)]="userObj.mobileNo" class="form-control">
+        </div>
+
+        <div class="col-6">
+          <label>Password</label>
+          <input type="password" [(ngModel)]="userObj.password" class="form-control">
+        </div>
+      </div>
+
+     
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Buttons -->
+      <div class="row pt-3">
+        <div class="col-6">
+          <button class="btn btn-secondary w-100">Reset</button>
+        </div>
+
+        <div class="col-6 text-center">
+          <button class="btn btn-success w-100" (click)="onSaveUser()">Save</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

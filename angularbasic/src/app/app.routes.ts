@@ -6,6 +6,8 @@ import { NgIf } from './components/ng-if/ng-if';
 import { NgFor } from './components/ng-for/ng-for';
 import { NgClass } from '@angular/common';
 import { PipeEx } from './components/pipe-ex/pipe-ex';
+import { GetApi } from './components/get-api/get-api';
+import { User } from './components/user/user';
 
 export const routes: Routes = [
     {
@@ -31,6 +33,15 @@ export const routes: Routes = [
     {
         path: 'pipe-ex',
         component: PipeEx
+    },
+    {
+        path: 'get-api',
+        component: GetApi
+,
+    },
+    {
+        path: 'user',
+        component: User
     }
     
 ];
