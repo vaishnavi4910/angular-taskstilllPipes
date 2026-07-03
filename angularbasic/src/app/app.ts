@@ -10,11 +10,12 @@ import { Highlight } from './components/highlight';
 import { AppnumbersOnly } from './components/appnumbers-only';
 import { CurrencyConverterPipe } from './components/currency-converter-pipe';
 import { GetApi } from './components/get-api/get-api';
+import { ReactiveUser } from './components/reactive-user/reactive-user';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterLink,DataBinding,RouterOutlet,CurrencyConverterPipe,GetApi,User], 
+  imports: [RouterLink,DataBinding,RouterOutlet,CurrencyConverterPipe,GetApi,User,ReactiveUser], 
   // Highlight,AppnumbersOnly,NgClass,NgFor,NgIf
   templateUrl: './app.html',
   styleUrl: './app.css'

@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Api } from './services/api';
+import { Api } from '../../service/api';
+
 @Component({
   selector: 'app-user',
   imports: [FormsModule],
@@ -9,42 +9,110 @@ import { Api } from './services/api';
   styleUrl: './user.css',
 })
 export class User implements OnInit {
-  http=inject(HttpClient);
+
+  private api = inject(Api);
+
   userList: any[] = [];
-  userObj: any= {
-  "userId": 0,
-  "emailId": "",
-  "password": "",
-  "fullName": "",
-  "mobileNo": "",
+  selectedUserId: number = 0;
+
+  userObj: any = {
+    userId: 0,
+    emailId: '',
+    password: '',
+    fullName: '',
+    mobileNo: ''
+  };
+
+  ngOnInit():void {
+    this.getUsers();
+  }
+
+  getUsers() {
+    this.api.getUsers().subscribe((result: any) => {
+      this.userList = result;
+      console.log(" this.userList", this.userList);
+      
+    });
+  }
+
+  onSaveUser() {
+    this.api.createUser(this.userObj).subscribe({
+      next: () => {
+        alert('User created successfully');
+        this.getUsers();
+        this.onReset();
+      },
+      error: (err) => {
+        alert('User creation failed');
+        console.log(err);
+      }
+    });
+  }
+
+//   onEdit(item: any) {
+
+//   this.userObj = item;
+//  }
+
+  // onUpdateUser() {
+  //   this.api.onUpdateUser(this.userObj).subscribe({
+  //     next: (res) => {
+  //       console.log("resres",res);
+        
+  //       alert('User updated successfully');
+  //       this.getUsers();
+
+  //     },
+  //     error: (err:any) => {
+  //       alert('User update failed');
+  //       console.log(err);
+  //     }
+  //   });
+  // }
+
+
+
+  onEdit(item: any) {
+  this.selectedUserId = item.userId;
+  this.userObj = { ...item };
 }
 
-ngOnInit():void{
-   this.getUsers();
-
-}
-
-getUsers() {
-  this.http.get("https://api.freeprojectapi.com/api/GoalTracker/getAllUsers").subscribe((result :any)=>{
-    debugger;
-    this.userList=result;
+  onUpdateUser() {
+  this.api.onUpdateUser(this.selectedUserId, this.userObj).subscribe({
+    next: () => {
+      alert('User updated successfully');
+      this.getUsers();
+      this.onReset();
+    },
+    error: (err) => {
+      console.log(err);
+      alert('User update failed');
+    }
   });
 }
 
-onSaveUser(){
-  debugger;
-  this.http.post("https://api.freeprojectapi.com/api/GoalTracker/register",this.userObj).subscribe({
-    next: (result :any)=>{
-      debugger;
-      alert("user create success");
-      this.getUsers();
-    },
-    error: (error)=>{
-      debugger;
-      alert("user create failed"+error);
-    }}
-
-  )
+  onDelete(userId: number) {
+    this.api.onDeleteUser(userId ).subscribe({
+      next: () => {
+        alert('User deleted successfully');
+        this.getUsers();
+      },
+      error: (err:any) => {
+        alert('User deletion failed');
+        console.log(err);
+      }
+    });
   }
 
+  onReset() {
+    this.userObj = {
+      userId: 0,
+      emailId: '',
+      password: '',
+      fullName: '',
+      mobileNo: ''
+    };
+  }
+
+  
 }

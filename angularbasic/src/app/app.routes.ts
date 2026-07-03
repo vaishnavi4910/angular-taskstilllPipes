@@ -8,40 +8,86 @@ import { NgClass } from '@angular/common';
 import { PipeEx } from './components/pipe-ex/pipe-ex';
 import { GetApi } from './components/get-api/get-api';
 import { User } from './components/user/user';
+import { ReactiveUser } from './components/reactive-user/reactive-user';
+import { Adminlazy } from './components/adminlazy/adminlazy';
+
+
+
 
 export const routes: Routes = [
-    {
-        path: 'admin',
-        component: Admin
-    },
-    {
+
+  // Normal routes
+  {
+    path: 'data-binding',
+    component: DataBinding
+  },
+  {
+    path: 'ng-if',
+    component: NgIf
+  },
+  {
+    path: 'ng-for',
+    component: NgFor
+  },
+  {
+    path: 'pipe-ex',
+    component: PipeEx
+  },
+  {
+    path: 'get-api',
+    component: GetApi
+  },
+  {
+    path: 'user',
+    component: User
+  },
+  {
+    path: 'reactive-user',
+    component: ReactiveUser
+  },
+   {
+        path: 'admin-lazy',
+        loadComponent: () => import('./components/adminlazy/adminlazy').then(m=>{
+            return m.Adminlazy;})
+        }
+      ,
+
+  // Parent route with child routes
+  {
+    path: 'admin',
+    component: Admin,
+    children: [
+      {
         path: 'data-binding',
         component: DataBinding
-    },
-    {
-        path:'ng-if',
+      },
+      {
+        path: 'ng-if',
         component: NgIf
-    },
-    {
+      },
+      {
         path: 'ng-for',
         component: NgFor
-    },
-    {
-        path: 'ng-class',
-        component: NgClass
-    },
-    {
+      },
+      {
         path: 'pipe-ex',
         component: PipeEx
-    },
-    {
+      },
+      {
         path: 'get-api',
         component: GetApi
-,
-    },
-    {
+      },
+      {
         path: 'user',
         component: User
-    }
-    
+      },
+      {
+        path: 'reactive-user',
+        component: ReactiveUser
+      },
+     
+    ]
+  }
+
+     
 ];
