@@ -10,6 +10,8 @@ import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angula
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './student-registration.html',
   styleUrl: './student-registration.css',
+
+  
 })
 export class StudentRegistration {
 
